@@ -1,15 +1,18 @@
 package org.launchcode.java.demos.lsn1datatypes;
 
-public class Message {
+class Message {
 
-    public static String getMessage(String lang) {
+    static String getMessage(String lang) {
 
-        if (lang.equals("sp")) {
-            return "¡Hola, Mundo!";
-        } else if (lang.equals("fr")) {
-            return "Bonjour, le monde!";
-        } else {
-            return "Hello, World!";
+        switch (lang) {
+            case "sp":
+                return "¡Hola, Mundo!";
+            case "fr":
+                return "Bonjour, le monde!";
+            case "it":
+                return "Ciao, Mundi!";
+            default:
+                return "Hello, World!";
         }
     }
 }
