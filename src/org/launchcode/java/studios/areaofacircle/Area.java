@@ -7,22 +7,31 @@ public class Area {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         boolean isInputGood = false;
+        String inputTest = "";
         while (!isInputGood) {
             try {
                 System.out.println("Enter the Radius of the circle to calculate:");
-                double circleRadius = input.nextDouble();
-                double areaOfCircle = Circle.getArea(circleRadius);
-                if (areaOfCircle != 0.0) {
-                    System.out.println("The Area of a Circle with Radius " + circleRadius + " is " + areaOfCircle);
-                    isInputGood = true;
+                inputTest = input.nextLine();
+                if (!inputTest.isBlank()) {
+                    double circleRadius = Double.valueOf(inputTest);
+
+                    //double circleRadius = input.nextDouble();
+                    double areaOfCircle = Circle.getArea(circleRadius);
+                    if (areaOfCircle != 0.0) {
+                        System.out.println("The Area of a Circle with Radius " + circleRadius + " is " + areaOfCircle);
+                        isInputGood = true;
+                    } else {
+                        System.out.println("Zero or Negative Value Entered. Please Enter a Positive Number.");
+                    }
                 } else {
-                    System.out.println("Zero or Negative Value Entered. Please Enter a Positive Number.");
+                    System.out.println("Nothing was entered. Please Enter a Positive Number");
                 }
             }
-            catch (InputMismatchException e) {
-                System.err.println("Error 997! Non-Numeric Entered.");
-                input.next();
+
+            catch (NumberFormatException e) {
+                System.err.println("Error 997! Number Format Non-Numeric Entered.");
                 System.out.println("Non-Numeric Value Entered. Please Enter a Positive Number.");
+                //input.nextLine();
             }
         }
         input.close();
@@ -31,18 +40,27 @@ public class Area {
 
 
 /*
-Scanner input = new Scanner(System.in);
-    System.out.println("Enter Student ID:");
+cheese = ""; // empty 'cheese' of prior input
+cheese = in.nextLine(); //read in a line of input
 
-    String sID = null;
-    if (input.hasNextInt()==false){
-        System.out.println("Please re-check the student number inputted. Student number can only be digits.");
-        throw new BadUserInputException("Student number can not contain non-digits.");
-    }else if (input.next()==""){
-        throw new BadUserInputException("Student number can not be empty");
-    }
+//if user didn't enter anything (or just spacebar and return)
+if(cheese.isEmpty()) {
+System.out.println("Nothing was entered. Please try again");
+}
+//user entered something
+else {
+[enter code here checking validity of input]
+}
 
+I tried implementing this check for integer input and discovered it's better to accept String type input and convert it to int type with a wrapper class. If you have
 
+int eger = 0; //initialize to zero
+
+then you would put this code in the else statement above:
+
+else{
+eger = Integer.valueOf(cheese);
+}
 public class TakeInput {
 
     public static void main(String[] args) {
