@@ -5,8 +5,8 @@ public class Student {
     private static int nextStudentId = 1;
     private String name;
     private int studentId;
-    private int numberOfCredits = 0;
-    private double gpa = 0.0;
+    private int numberOfCredits;
+    private double gpa;
 
     public Student (String name, int studentId, int numberOfCredits, double gpa) {
         this.name = name;
@@ -28,22 +28,38 @@ public class Student {
         return (this.name + " has a GPA of: " + this.gpa);
     }
 
-
-     //TODO: Uncomment and complete the getGradeLevel method here:
-//    public String getGradeLevel() {
-//        // Determine the grade level of the student based on numberOfCredits
-//    }
-
-    // TODO: Complete the addGrade method.
-    public void addGrade(int courseCredits, double grade) {
-        // Update the appropriate fields: numberOfCredits, gpa
+    public String getGradeLevel() {
+        if (this.numberOfCredits >= 90) {
+            return (this.name + " is a Senior.\n********\n");
+        } else if (this.numberOfCredits >= 60) {
+            return (this.name + " is a Junior.\n********\n");
+        } else if (this.numberOfCredits >= 30) {
+            return (this.name + " is a Sophomore.\n********\n");
+        } else {
+            return (this.name + " is a Freshman.\n*********\n");
+        }
     }
 
-    // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
-    //  than just the class fields.
+    public void addGrade(int courseCredits, double grade) {
+        double newQualityScore = ((this.gpa * this.numberOfCredits) + (grade * courseCredits));
+        this.numberOfCredits += courseCredits;
+        this.gpa = newQualityScore / this.numberOfCredits;
+    }
 
-    // TODO: Add your custom 'equals' method here. Consider which fields should match in order to call two
-    //  Student objects equal.
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        return studentId == student.studentId;
+    }
+
+    @Override
+    public int hashCode() {
+        return studentId;
+    }
 
     public String getName() {
         return name;
@@ -77,13 +93,23 @@ public class Student {
         this.numberOfCredits = numberOfCredits;
     }
 
+    @Override
+    public String toString() {
+        return "Student Name = " + name + "\n" +
+                "Student Id = " + studentId + "\n" +
+                "Number Of Credits = " + numberOfCredits + "\n" +
+                "GPA = " + gpa;
+    }
+
     public static void main(String[] args) {
         Student sally = new Student("Sally",1,1,4.0);
-        System.out.println("The Student class works! " + sally.getName() + " is a student!");
+        System.out.println("\nThe Student class works! " + sally.getName() + " is a student!\n");
         System.out.println(sally);
+        System.out.println(sally.getGradeLevel());
         sally.addGrade(12, 3.5);
-        System.out.println(sally);
         sally.addGrade(25, 3.8);
         System.out.println(sally);
+        System.out.println(sally.getGradeLevel());
+        System.out.println(sally.studentInfo());
     }
 }
