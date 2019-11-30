@@ -1,4 +1,6 @@
-package org.launchcode.java.demos.lsn6inheritance;
+package org.launchcode.java.demos.lsn6inheritance.main;
+
+import org.launchcode.java.demos.lsn6inheritance.main.Cat;
 
 public class HouseCat extends Cat {
     private String name;
@@ -6,6 +8,10 @@ public class HouseCat extends Cat {
 
     public HouseCat(String aName, double aWeight) {
         super(aWeight);
+        name = aName;
+    }
+
+    public HouseCat(String aName) {
         name = aName;
     }
 

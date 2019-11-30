@@ -1,4 +1,4 @@
-package org.launchcode.java.demos.lsn6inheritance;
+package org.launchcode.java.demos.lsn6inheritance.main;
 
 public class Cat {
 
@@ -11,6 +11,10 @@ public class Cat {
 
     public Cat (double aWeight) {
         weight = aWeight;
+    }
+
+    public Cat (){
+        weight = 18;
     }
 
     /**** Getters and Setters ****/
